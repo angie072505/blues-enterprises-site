@@ -364,117 +364,121 @@ function App() {
         </section>
 
         {/* CONTACT SECTION */}
-        <section id="contact" className="min-h-screen">
-          {/* Contact Hero */}
-          <div className="relative min-h-[50vh] flex items-center justify-center">
-            <div className="absolute inset-0">
-              <img 
-                src={contactContent.hero.image} 
-                alt="Contact"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/60" />
-            </div>
-            <div className="relative z-10 text-center px-6">
-              <p className="text-xs uppercase tracking-wide text-brand-text-secondary mb-4">
-                {contactContent.hero.subtitle}
-              </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                {contactContent.hero.title}
-              </h2>
-              <a 
-                href={`tel:${contactContent.hero.phone}`}
-                className="text-brand-accent hover:text-white transition-colors text-lg"
-              >
-                {contactContent.hero.phone}
-              </a>
-            </div>
-          </div>
+        <div className="py-16 px-6 max-w-2xl mx-auto">
+  <form
+    name="contact"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    className="space-y-6"
+  >
+    {/* Required for Netlify form detection */}
+    <input type="hidden" name="form-name" value="contact" />
 
-          {/* Contact Form */}
-          <div className="py-16 px-6 max-w-2xl mx-auto">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
-                  {contactContent.form.fields.name.label} *
-                </label>
-                <input type="text" className="input-field" required />
-              </div>
+    {/* Honeypot field (spam protection) */}
+    <p className="hidden">
+      <label>
+        Don’t fill this out: <input name="bot-field" />
+      </label>
+    </p>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
-                  {contactContent.form.fields.email.label} *
-                </label>
-                <input type="email" className="input-field" required />
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
+        {contactContent.form.fields.name.label} *
+      </label>
+      <input name="name" type="text" className="input-field" required />
+    </div>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
-                  {contactContent.form.fields.phone.label} *
-                </label>
-                <input type="tel" className="input-field" required />
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
+        {contactContent.form.fields.email.label} *
+      </label>
+      <input name="email" type="email" className="input-field" required />
+    </div>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
-                  {contactContent.form.fields.location.label} *
-                </label>
-                <input type="text" className="input-field" required />
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
+        {contactContent.form.fields.phone.label} *
+      </label>
+      <input name="phone" type="tel" className="input-field" required />
+    </div>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-4">
-                  {contactContent.form.fields.packages.label} *
-                </label>
-                <div className="space-y-2">
-                  {contactContent.form.fields.packages.options.map((option, i) => (
-                    <label key={i} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" className="w-4 h-4 border border-gray-500 accent-brand-accent" />
-                      <span className="text-brand-text-secondary text-sm">{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
+        {contactContent.form.fields.location.label} *
+      </label>
+      <input name="location" type="text" className="input-field" required />
+    </div>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-4">
-                  {contactContent.form.fields.addons.label} *
-                </label>
-                <div className="space-y-2">
-                  {contactContent.form.fields.addons.options.map((option, i) => (
-                    <label key={i} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" className="w-4 h-4 border border-gray-500 accent-brand-accent" />
-                      <span className="text-brand-text-secondary text-sm">{option.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-4">
+        {contactContent.form.fields.packages.label} *
+      </label>
+      <div className="space-y-2">
+        {contactContent.form.fields.packages.options.map((option, i) => (
+          <label key={i} className="flex items-center gap-3 cursor-pointer">
+            <input
+              name="packages"
+              value={option}
+              type="checkbox"
+              className="w-4 h-4 border border-gray-500 accent-brand-accent"
+            />
+            <span className="text-brand-text-secondary text-sm">{option}</span>
+          </label>
+        ))}
+      </div>
+    </div>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
-                  {contactContent.form.fields.referral.label} *
-                </label>
-                <select className="input-field" required>
-                  <option value="">Select option</option>
-                  {contactContent.form.fields.referral.options.map((option, i) => (
-                    <option key={i} value={option.toLowerCase()}>{option}</option>
-                  ))}
-                </select>
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-4">
+        {contactContent.form.fields.addons.label} *
+      </label>
+      <div className="space-y-2">
+        {contactContent.form.fields.addons.options.map((option, i) => (
+          <label key={i} className="flex items-center gap-3 cursor-pointer">
+            <input
+              name="addons"
+              value={option.label}
+              type="checkbox"
+              className="w-4 h-4 border border-gray-500 accent-brand-accent"
+            />
+            <span className="text-brand-text-secondary text-sm">{option.label}</span>
+          </label>
+        ))}
+      </div>
+    </div>
 
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
-                  {contactContent.form.fields.message.label} *
-                </label>
-                <textarea className="input-field min-h-[120px] resize-none" required />
-              </div>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
+        {contactContent.form.fields.referral.label} *
+      </label>
+      <select name="referral" className="input-field" required defaultValue="">
+        <option value="">Select option</option>
+        {contactContent.form.fields.referral.options.map((option, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
 
-              <button type="submit" className="btn-primary w-full">
-                {contactContent.form.submitButton}
-              </button>
-            </form>
-          </div>
-        </section>
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wide text-white mb-2">
+        {contactContent.form.fields.message.label} *
+      </label>
+      <textarea
+        name="message"
+        className="input-field min-h-[120px] resize-none"
+        required
+      />
+    </div>
+
+    <button type="submit" className="btn-primary w-full">
+      {contactContent.form.submitButton}
+    </button>
+  </form>
+</div>
+</section>
 
         {/* ABOUT ME SECTION */}
         <section id="about" className="min-h-screen">
